@@ -28,7 +28,10 @@ def trip_update(stopId = ""):
                     stop_id = str(stop.stop_id)
                     if (stop_id == stopId):
                         result = result + str(stop.arrival.delay)
-                        return template('It should arrive to {{stopId}} in {{name}} seconds', name = result, stopId = stopId)
+                        if(result.count("-") > 0):
+                            return template('It is early in {{stopId}} by {{name}} seconds', name = result, stopId = stopId)
+                        else:
+                            return template('It is late in {{stopId}} by {{name}} seconds', name = result, stopId = stopId)
 
     return template('hi')
 
