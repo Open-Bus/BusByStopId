@@ -2,7 +2,6 @@ from bottle import route, run, template
 from google.transit import gtfs_realtime_pb2
 import requests
 
-
 @route('/')
 def maps():
     return "Hello"
@@ -31,7 +30,7 @@ def trip_update(stopId = ""):
                         result = result + str(stop.arrival.delay)
                         return template('It should arrive to {{stopId}} in {{name}} seconds', name = result, stopId = stopId)
 
-     return template('hi')
+    return template('hi')
 
 
 run(host = 'localhost', port = 8080, debug = True, reloader = True)
